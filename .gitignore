@@ -1,0 +1,17 @@
+# Build files
+*.o
+*.out
+monitor
+
+# Editor files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+
+# OS files
+.DS_Store
