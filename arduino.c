@@ -8,7 +8,7 @@
 static int arduino_fd = -1;
 
 int arduino_init(const char *device) {
-  arduiono_fd = open(device, O_RDWR | O_NOCTTY);
+  arduino_fd = open(device, O_RDWR | O_NOCTTY);
 
   if (arduino_fd == -1) {
   }
@@ -25,7 +25,7 @@ int arduino_init(const char *device) {
   cfsetispeed(&tty, B9600);
   cfsetospeed(&tty, B9600);
 
-  tty.c_cflag != (CLOCAL | CREAD);
+  tty.c_cflag |= (CLOCAL | CREAD);
   tty.c_cflag &= ~CSIZE;
   tty.c_cflag |= CS8;
   tty.c_cflag &= ~PARENB;
@@ -59,7 +59,7 @@ int arduino_send(float cpu, float ram, float temp, float net) {
       snprintf(message, sizeof(message),
                "CPU=%.1f,RAM=%.1f,TEMP=%.1f,NET=%.1f\n", cpu, ram, temp, net);
 
-  if (length < 0 || length >= sizeof(message)) {
+  if (length < 0 || (size_t)length >= sizeof(message)) {
     return -1;
   }
 

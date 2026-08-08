@@ -6,6 +6,7 @@
 #include "arduino.h"
 #include "cpu.h"
 #include "ram.h"
+#include "temp.h"
 
 int main() {
 
@@ -19,8 +20,13 @@ int main() {
 
     float cpu = get_cpu_usage();
     float ram = get_ram_usage();
-    float temp = 0;
+    float temp = get_temperature();
     float net = 0;
+
+    printf("CPU:%.1f\n", cpu);
+    printf("RAM:%.1f\n", ram);
+    printf("-----------------\n");
+    fflush(stdout);
 
     if (arduino_send(cpu, ram, temp, net) == -1) {
       break;
