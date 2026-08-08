@@ -59,6 +59,8 @@ The LCD and button are connected directly to the Arduino.
 
 The Arduino acts as a simple hardware interface between the Linux system and the display.
 
+![Arduino setup](images/Arduino_setup.jpg)
+
 ## Software Architecture
 
 The project is divided into separate C modules rather than putting everything into one source file.
